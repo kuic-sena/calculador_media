@@ -1,0 +1,22 @@
+﻿<div class="calculator">
+    @if (showResults)
+    {
+        <Result Datasource="@datasource" />
+    }
+
+    else
+    {
+        <Upload OnUploaded="OnUploaded" />
+    }
+</div>
+
+@code {
+    private bool showResults = false;
+    private IEnumerable<IEnumerable<double>> datasource;
+
+    private void OnUploaded(IEnumerable<IEnumerable<double>> data)
+    {
+        this.datasource = data;
+        showResults = true;
+    }
+}

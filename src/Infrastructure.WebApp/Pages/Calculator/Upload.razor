@@ -1,0 +1,47 @@
+﻿<div class="upload">
+    <InputFile OnChange="OnFileSelected" />
+
+    <div class="container has-content">
+        <box-icon name="cloud-upload" size="2rem"></box-icon>
+
+        @if (hasError)
+        {
+            <h6>Intenta nuevamente</h6>
+            <p>El archivo no es valido, recuerda que debe estar en formato CSV y separado por punto y coma.</p>
+        }
+
+        else
+        {
+            <h6>Arrastra y suelta el archivo</h6>
+            <p>El archivo debe estar en formato CSV y separado por punto y coma.</p>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public EventCallback<IEnumerable<IEnumerable<double>>> OnUploaded { get; set; }
+
+    private bool hasError = false;
+
+    private async Task OnFileSelected(IFileListEntry[] files)
+    {
+        try
+        {
+            var file = files.FirstOrDefault();
+
+            var converter = new Application.StreamToTable();
+            var table = await converter.Convert(file.Data);
+
+            if (OnUploaded.HasDelegate)
+            {
+                await OnUploaded.InvokeAsync(table);
+                hasError = false;
+            }
+        }
+        catch
+        {
+            hasError = true;
+        }
+    }
+}

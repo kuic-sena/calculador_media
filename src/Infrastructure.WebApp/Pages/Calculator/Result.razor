@@ -1,0 +1,38 @@
+﻿<div class="result">
+    @foreach (var average in averages)
+    {
+        <p>@average</p>
+    }
+
+    @foreach (var deviation in deviations)
+    {
+        <p>@deviation</p>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public IEnumerable<IEnumerable<double>> Datasource { get; set; }
+
+    private double[] averages;
+    private double[] deviations;
+
+    protected override void OnParametersSet()
+    {
+        var data = Datasource.ToList();
+
+        // set of results from the calculation
+
+        averages = new double[data.Count()];
+        deviations = new double[data.Count()];
+
+        var averageCalculator = new Application.AverageCalculator();
+        var deviationCalculator = new Application.DeviationCalculator();
+
+        for (int row = 0; row < Datasource.Count(); row++)
+        {
+            averages[row] = averageCalculator.Calculate(data[row]);
+            deviations[row] = deviationCalculator.Calculate(data[row]);
+        }
+    }
+}
