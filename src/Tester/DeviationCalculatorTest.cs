@@ -9,7 +9,7 @@ namespace Tester
     public class DeviationCalculatorTest
     {
         [TestMethod]
-        public void SimpleSuitTest()
+        public void CalculateSimple()
         {
             var deviationCalculator = new DeviationCalculator();
             var suit = new List<double> { 6, 2, 3, 1 };
@@ -19,7 +19,7 @@ namespace Tester
         }
 
         [TestMethod]
-        public void LargeSuitTest()
+        public void CalculateLarge()
         {
             var deviationCalculator = new DeviationCalculator();
             var suit = new List<double> { 3, 5, 6, 7, 9, 12, 23, 86, 1, 23, 2, 5, 6, 9, 11, 21, 42, 24, 80, 93 };

@@ -30,8 +30,8 @@
         {
             var file = files.FirstOrDefault();
 
-            var converter = new Application.StreamToTable();
-            var table = await converter.Convert(file.Data);
+            var converter = new Application.CsvToList();
+            var table = await converter.FromStreamAsync(file.Data);
 
             if (OnUploaded.HasDelegate)
             {
