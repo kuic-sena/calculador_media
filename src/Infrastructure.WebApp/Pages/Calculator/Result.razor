@@ -1,13 +1,32 @@
 ﻿<div class="result">
-    @foreach (var average in averages)
-    {
-        <p>@average</p>
-    }
+    <div class="container has-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        <abbr title="Número de fila">N° Fila</abbr>
+                    </th>
+                    <th>
+                        <abbr title="Media arimetica">Promedio</abbr>
+                    </th>
+                    <th>
+                        <abbr title="Desviación estándar">Desviación</abbr>
+                    </th>
+                </tr>
+            </thead>
 
-    @foreach (var deviation in deviations)
-    {
-        <p>@deviation</p>
-    }
+            <tbody>
+                @for (int i = 0; i < Datasource.Count(); i++)
+                {
+                    <tr>
+                        <td>#@( i + 1 )</td>
+                        <td>@( averages[i] )</td>
+                        <td>@( deviations[i] )</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>
 
 @code {

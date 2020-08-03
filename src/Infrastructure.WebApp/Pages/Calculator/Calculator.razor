@@ -1,7 +1,16 @@
 ﻿<div class="calculator">
     @if (showResults)
     {
-        <Result Datasource="@datasource" />
+        <div class="container has-content">
+            <Result Datasource="@datasource" />
+
+            <div class="buttons">
+                <button @onclick="MakeAnother">
+                    <box-icon name="refresh"></box-icon>
+                    <span>Realizar otro análisis</span>
+                </button>
+            </div>
+        </div>
     }
 
     else
@@ -16,7 +25,13 @@
 
     private void OnUploaded(IEnumerable<IEnumerable<double>> data)
     {
-        this.datasource = data;
+        datasource = data;
         showResults = true;
+    }
+
+    private void MakeAnother()
+    {
+        datasource = null;
+        showResults = false;
     }
 }

@@ -2,10 +2,15 @@
 
 .upload {
     position: relative;
+    min-height: 35vh;
     padding: 1.5rem;
     border: dashed .1rem rgba(0,0,0,0.15);
     border-radius: 1rem;
     transition: all ease .15s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .upload:hover {
@@ -13,17 +18,16 @@
 }
 
 .upload .container {
-    display: flex;
-    flex-direction: column;
-    justify-items: center;
-    align-items: center;
+    
     text-align: center;
 }
 
 .upload input[type=file] {
-    position: absolute;
     width: 100%;
     height: 100%;
     opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
     cursor: pointer;
 }

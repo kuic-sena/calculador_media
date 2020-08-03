@@ -22,7 +22,7 @@ namespace Application
 
         private double StringToNumber(string text)
         {
-            var numberStyle = NumberStyles.AllowDecimalPoint | NumberStyles.Integer | NumberStyles.Float;
+            var numberStyle = NumberStyles.Integer | NumberStyles.Float;
             bool could = double.TryParse(text, numberStyle, CultureInfo.InvariantCulture, out double value);
 
             return could ? value : 0;
